@@ -28,6 +28,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Kz-hd-uik"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="반갑습니당" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVy-sN-I3H">
                                 <rect key="frame" x="121.66666666666669" y="209" width="150" height="50"/>
@@ -49,6 +52,10 @@
                             <constraint firstItem="pVy-sN-I3H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="bil-dm-EhY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainLabel" destination="pVy-sN-I3H" id="PZ1-a2-af0"/>
+                        <outlet property="myButton" destination="rJM-ru-KUk" id="MPU-aw-qF8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
