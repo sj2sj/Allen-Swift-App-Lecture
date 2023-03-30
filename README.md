@@ -34,3 +34,9 @@
 ```swift
 Array.randomElement()
 ```
+
+<br><br><br>
+
+## (3) RPSGame
+### 가위바위보 앱
+- 스토리보드에서 요소마다 정렬이 필요 할  경우 stack view를 사용하면 유용함
