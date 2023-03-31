@@ -40,3 +40,12 @@ Array.randomElement()
 ## (3) RPSGame
 ### 가위바위보 앱
 - 스토리보드에서 요소마다 정렬이 필요 할  경우 stack view를 사용하면 유용함
+
+
+<br><br><br>
+
+## (4, 5) UpDownGame
+### 숫자를 입력하면 컴퓨터의 숫자보다 Up인지 Down인지 알려주는 앱 (숫자 맞히기 앱)
+- 앱 실행 시 main함수부터 시작되는데, swift 프로젝트에서는 AppDelegate의 @main 어노테이션이 그런 역할을 해줌
+- View로 선 표현도 가능
+- View Controller Scence에서 요소가 상위에 존재할 수록 하위에 위치하는 것
