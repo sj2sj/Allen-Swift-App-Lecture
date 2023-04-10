@@ -4,7 +4,7 @@
 
 <br><br><br>
 
-## (1) MyFirstApp
+## (기초 1) MyFirstApp
 ### 버튼을 누르면 텍스트가 변경되는 앱
 - 오토레이아웃 사용 시 중복된 constraints를 주지 않도록 주의할 것
 - 스토리보드와 연결된 코드를 지울 땐 스토리보드에서도 연결을 끊어줘야 함!!!
@@ -17,7 +17,7 @@
 - **@IBAction**: Interface Builder와 연결된 Action <br>
 스토리보드 상 이벤트가 일어나면 어떤 함수를 호출 시킬 것인지 알려주는 것
 
-<br><br><br>
+<br><br>
 
 ## ❓ 프레임워크와 라이브러리
 ```
@@ -25,9 +25,9 @@
 라이브러리: 단순 활용가능한 도구들의 집합
 ```
 
-<br><br><br>
+<br><br>
 
-## (2) DiceGame
+## (기초 2) DiceGame
 ### 버튼을 누르면 2개의 주사위를 굴리는 앱
 - 이미지는 Assets.xcassets에 넣어서 사용!
 - 배열에서 랜덤 요소 꺼내기
@@ -35,17 +35,41 @@
 Array.randomElement()
 ```
 
-<br><br><br>
+<br><br>
 
-## (3) RPSGame
+## (기초 3) RPSGame
 ### 가위바위보 앱
 - 스토리보드에서 요소마다 정렬이 필요 할  경우 stack view를 사용하면 유용함
 
 
-<br><br><br>
+<br><br>
 
-## (4, 5) UpDownGame
+## (기초 4, 5) UpDownGame
 ### 숫자를 입력하면 컴퓨터의 숫자보다 Up인지 Down인지 알려주는 앱 (숫자 맞히기 앱)
 - 앱 실행 시 main함수부터 시작되는데, swift 프로젝트에서는 AppDelegate의 @main 어노테이션이 그런 역할을 해줌
 - View로 선 표현도 가능
 - View Controller Scence에서 요소가 상위에 존재할 수록 하위에 위치하는 것
+
+<br><br>
+<hr>
+<br><br>
+
+## 앱 활용 서론
+- Xcode - [Window] - [Developer Documents] 을 통해 개발자 문서 참조 가능
+- 옵셔널 벗길 때 아래와 같이도 사용 가능
+```swift
+guard let myNumString = numberLabel.text else { return }
+guard let myNumber = Int(MyNumString) else { return }
+//위의 코드를 아래와 같이 묶어서 사용
+guard let myNumString = numberLabel.text
+    , let myNumber = Int(MyNumString) else { return }
+```
+
+<br><br>
+## 앱 만들기 원리
+
+
+
+<br><br>
+<hr>
+<br><br>
