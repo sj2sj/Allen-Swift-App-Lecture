@@ -47,7 +47,7 @@ Array.randomElement()
 ## (기초 4, 5) UpDownGame
 ### 숫자를 입력하면 컴퓨터의 숫자보다 Up인지 Down인지 알려주는 앱 (숫자 맞히기 앱)
 - 앱 실행 시 main함수부터 시작되는데, swift 프로젝트에서는 AppDelegate의 @main 어노테이션이 그런 역할을 해줌
-- View로 선 표현도 가능
+- UIView로 선 표현도 가능
 - View Controller Scence에서 요소가 상위에 존재할 수록 하위에 위치하는 것
 
 <br><br>
@@ -66,10 +66,55 @@ guard let myNumString = numberLabel.text
 ```
 
 <br><br>
-## 앱 만들기 원리
-
+## 앱 만들기 원리 (웹과 앱의 비교)
+웹(Web)|iOS
+--|:--:
+상단->아래 (왼쪽 상단이 default)|오브젝트(대부분 클래스) 배치 <br> 내부 속성, 동작이 내장됨
+화면을 그리는 매커니즘과 내부 동작 매커니즘이 분리됨|하나의 클래스 내에 화면을 그리는 매커니즘과 동작 매커니즘이 공존함
+운영체제와 독립적 /<br> 브라우저 엔진에 의해 돌아감 | 운영체제와 밀접함
 
 
 <br><br>
 <hr>
 <br><br>
+
+
+## (1) FirstTimerApp
+### 슬라이더로 초를 선택하고, 초가 끝나면 사운드가 울리는 앱
+- viewDidLoad 함수에 기본적인 설정을 하기보다는, 따로 함수를 만들어서 설정한 후 viewDidLoad에서 호출하는 것을 권장
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    //이렇게 바로 사용하는거보다
+    //maiLabel.text = "초를 선택하세요"
+
+    //함수를 만들어서 호출하는 것을 권장함
+    configureUI()
+  }
+
+  func configureUI() {
+    mainLabel.text = "초를 선택하세요"
+  }
+```
+
+<br>
+
+- **🌟 timer 사용법 🌟**
+```swift
+weak var timer: Timer? //강한 참조 방지
+
+timer?.invalidate() //타이머 비활성화
+timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
+      //1초마다 반복할 코드
+}
+```
+
+<br>
+
+- **🌟 system sound 사용법 🌟**
+```swift
+import AVFoundation
+
+AudioServicesPlayAlertSound(SystemSoundID(1016))
+```
