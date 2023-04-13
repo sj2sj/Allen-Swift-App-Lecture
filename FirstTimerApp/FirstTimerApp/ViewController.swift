@@ -14,6 +14,7 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var slider: UISlider!
   
+  
   weak var timer: Timer?
   
   var number: Int = 0
@@ -22,8 +23,6 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     configureUI()
-    
-    
   }
 
   //viewDidLoad 설정

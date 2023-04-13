@@ -70,7 +70,7 @@ guard let myNumString = numberLabel.text
 웹(Web)|iOS
 --|:--:
 상단->아래 (왼쪽 상단이 default)|오브젝트(대부분 클래스) 배치 <br> 내부 속성, 동작이 내장됨
-화면을 그리는 매커니즘과 내부 동작 매커니즘이 분리됨|하나의 클래스 내에 화면을 그리는 매커니즘과 동작 매커니즘이 공존함
+화면을 그리는 매커니즘과 내부 동작 매커니즘이 분리|하나의 클래스 내에 화면을 그리는 매커니즘과 동작 매커니즘이 공존
 운영체제와 독립적 /<br> 브라우저 엔진에 의해 돌아감 | 운영체제와 밀접함
 
 
@@ -117,4 +117,30 @@ timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
 import AVFoundation
 
 AudioServicesPlayAlertSound(SystemSoundID(1016))
+```
+
+<br><br>
+
+## (2) TextFieldProject
+### TextField를 사용해보는 앱
+- viewController에는 view라는 속성이 존재하기 때문에 아래와 같은 설정 가능
+```swift
+view.backgroundColor = UIColor.gray
+```
+
+<br>
+
+- textField 사용법
+```swift
+@IBOutlet weak var textField: UITextField!
+
+textField.keyboardType = UIKeyboardType.emailAddress 
+textField.placeholder = "이메일 입력"
+textField.borderStyle = .roundedRect
+textField.clearButtonMode = .always
+textField.returnKeyType = .next
+```
+- UITextFieldDelegate
+```swift
+
 ```
