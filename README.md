@@ -233,3 +233,59 @@ textField.becomeFirstResponder()
 ```swift
 textField.resignFirstResponder()
 ```
+
+
+<br><br>
+
+## (3) LoginProject
+### 스토리보드가 아닌 코드로 UI 만들어보기 (로그인 화면)
+<br>
+
+🌟 **코드로 UI 만들기**
+
+```swift
+class ViewController: UIViewController {
+  //⭐️view 속성들은 클로저 형태로 묶어서 많이 사용함! (보기 편해서)
+  let emailTextFieldView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor.darkGray
+    view.layer.cornerRadius = 8
+    view.layer.masksToBounds = true
+    return view
+  }()
+
+  override func viewDidLoad() {
+    //...
+    makeUI()
+    //...
+  }
+
+  func makeUI() {
+    //내가 만든 view를 화면에 띄우기 위해서는 기존에 존재하는 view에 addSubview를 해줘야 함
+    view.addSubview(emailTextFieldView)
+    
+    //⭐️⭐️⭐️ 오토레이아웃으로 사용하려면 반드시 false로 설정
+    emailTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+    
+    //autoLayout 설정
+    emailTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+    emailTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+    emailTextFieldView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+    emailTextFieldView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+    // 🫥 autoLayout 설정 시 isActive = true가 너무 귀찮아요
+    // 그럼, 아래와 같이 사용 가능!!
+    NSLayoutConstraint.activate([
+      emailInfoLabel.leadingAnchor.constraint(equalTo: emailTextFieldView.leadingAnchor, constant: 8),
+      emailInfoLabel.trailingAnchor.constraint(equalTo: emailTextFieldView.trailingAnchor, constant: 8),
+      emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor)
+    ])
+  }
+}
+
+```
+
+
+
+
+<br><br>
