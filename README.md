@@ -225,7 +225,7 @@ override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 - 키보드 올리기
 ```swift
-textField.resignFirstResponder()
+textField.becomeFirstResponder()
 ```
 
 - 키보드 내리기
