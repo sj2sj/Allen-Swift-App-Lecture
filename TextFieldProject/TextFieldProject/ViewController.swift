@@ -30,6 +30,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     textField.borderStyle = .roundedRect
     textField.clearButtonMode = .always
     textField.returnKeyType = .next
+  
+    //화면 진입 시 키보드 떠있는 상태로
+    textField.becomeFirstResponder()
+  }
+  
+  //화면의 탭을 감지하는 메서드
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+    // == textField.resignFirstResponder()
   }
 
   //텍스트 필드의 입력을 시작할때 호출되는 메서드
@@ -54,9 +63,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
   
   //텍스트필드에 글자를 입력 or 지울 때 마다 실행되는 함수
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    print(#function)
-    print(string)
-    return true
+    
+    //입력되는 글자가 숫자이면 입력 허용X
+    if Int(string) != nil {
+      return false
+    } else {
+      //10글자 이상 입력 금지
+      guard let text = textField.text else {return true}
+      let newLength = text.count + string.count - range.length
+      return newLength <= 10
+    }
+    
+    
+    //텍스트필드 입력 글자 수를 10글자로 제한
+//    let maxLength = 10
+//    let currentString: NSString = (textField.text ?? "") as NSString
+//    let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+//
+//    return newString.length <= maxLength
   }
   
   //텍스트필드의 엔터 키가 눌러지면 다음 동작을 허락할 것인지? 말 것인지
@@ -81,10 +105,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
     print(#function)
     print("유저가 텍스트 필드의 입력을 끝냄")
+    textField.text = ""
   }
   
   
   @IBAction func doneButtonTapped(_ sender: UIButton) {
+    //키보드 내림
+    textField.resignFirstResponder()
   }
   
   

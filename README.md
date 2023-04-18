@@ -130,7 +130,8 @@ view.backgroundColor = UIColor.gray
 
 <br>
 
-- textField 사용법
+- textField 사용법 <br>
+➡️ textField를 포커싱 하면 키보드가 나타나는 건 OS에서 관리하는 부분
 ```swift
 @IBOutlet weak var textField: UITextField!
 
@@ -142,5 +143,93 @@ textField.returnKeyType = .next
 ```
 - UITextFieldDelegate
 ```swift
+/* 1️⃣ viewDidLoad 설정 */
+override func viewDidLoad() {
+  //...  
+  textField.delegate = self //위임
+  //...
+}
 
+/* 2️⃣ 델리게이트 패턴 사용 */
+//텍스트 필드의 입력을 시작할때 호출되는 메서드
+func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+  return true
+}
+
+//텍스트필드 입력이 시작됐을 경우 호출
+//(보통 Bool이 반환타입이 아닌 경우 시점을 의미하는 경우가 많음)
+func textFieldDidBeginEditing(_ textField: UITextField) {
+  print("유저가 텍스트필드의 입력을 시작함")
+}
+
+//clear버튼의 동작 가능 여부
+func textFieldShouldClear(_ textField: UITextField) -> Bool {
+  return true
+}
+
+//텍스트필드에 글자를 입력 or 지울 때 마다 실행되는 함수
+func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+  print(string) //입력된 글자 출력
+  return true
+}
+
+//텍스트필드의 엔터 키가 눌러질 때 호출
+//(동작을 허락할 것인지? 말 것인지)
+func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  if textField.text == "" {
+    textField.placeholder = "Type Something!"
+    return false
+  } else {
+    return true
+  }
+}
+
+//텍스트필드의 입력이 끝날 때 호출 (끝날지 말지를 허락)
+func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+  return true
+}
+
+//텍스트필드의 입력이 끝났을 때 호출 (시점)
+func textFieldDidEndEditing(_ textField: UITextField) {
+  print("유저가 텍스트 필드의 입력을 끝냄")
+}
+```
+
+
+- 사용 예시
+```swift
+//텍스트필드에 글자 입력 or 삭제 시 호출
+func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+  //입력되는 글자가 숫자이면 입력 허용X
+  if Int(string) != nil {
+    return false
+  } else {
+    //10글자 이상 입력 금지
+    guard let text = textField.text else {return true}
+    let newLength = text.count + string.count - range.length
+    return newLength <= 10
+  }
+}
+```
+
+<br>
+
+- 화면 탭 감지
+```swift
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  //code
+}
+```
+
+<br>
+
+- 키보드 올리기
+```swift
+textField.resignFirstResponder()
+```
+
+- 키보드 내리기
+
+```swift
+textField.resignFirstResponder()
 ```
