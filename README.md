@@ -284,7 +284,27 @@ class ViewController: UIViewController {
 }
 
 ```
+<br>
 
+- **🌟 alert창 사용법 🌟**
+```swift
+let alert = UIAlertController(title: "비밀번호 바꾸기", message: "비밀번호를 바꾸시겠습니까?", preferredStyle: .alert)
+
+let success = UIAlertAction(title: "확인", style: .default) { action in
+  print("확인 버튼이 눌렸습니다.")
+}
+
+let cancel = UIAlertAction(title: "취소", style: .cancel) { cancel in
+  print("취소 버튼이 눌렸습니다.")
+}
+
+//UIAlertController에 UIAlertAction 올려주기
+alert.addAction(success)
+alert.addAction(cancel)
+
+//다음화면으로 넘어가는 메서드
+present(alert, animated: true, completion: nil)
+```
 
 
 
