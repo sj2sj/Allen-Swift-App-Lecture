@@ -286,6 +286,15 @@ class ViewController: UIViewController {
 ```
 <br>
 
+- **오토레이아웃을 동적으로도 사용 가능**
+```swift
+lazy var emailInfoLabelCenterYConstraint = emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor)
+
+emailInfoLabelCenterYConstraint.constant = -13
+```
+
+<br>
+
 - **🌟 alert창 사용법 🌟**
 ```swift
 let alert = UIAlertController(title: "비밀번호 바꾸기", message: "비밀번호를 바꾸시겠습니까?", preferredStyle: .alert)
@@ -308,4 +317,145 @@ present(alert, animated: true, completion: nil)
 
 
 
+
 <br><br>
+
+## (4) 
+### 화면 이동과 데이터 전달 실습
+
+<br>
+
+🌟 **화면 이동 방법**
+
+<br>
+1️⃣ 코드로 화면 이동 (다음 화면이 코드로 작성되어 있을 때만 가능)
+
+```swift
+class ViewController: UIViewController {
+  @IBAction func codeNextButtonTapped(_ sender: UIButton) {
+    let firstVC = FirstViewController() //이동할 뷰컨트롤러
+    
+    firstVC.modalPresentationStyle = .fullScreen
+    
+    firstVC.someString = "넘겨줄 데이터"
+    present(firstVC, animated: true, completion: nil)
+  }
+}
+
+class FirstViewController: UIViewController {
+  var someString: String? //넘겨줄 데이터 받을 변수
+
+  //뒤로가기 버튼
+  @objc func backButtonTapped() {
+    dismiss(animated: true, completion: nil)
+  }
+}
+```
+
+<br>
+2️⃣ 코드로 스토리보드 객체 생성해서 화면 이동
+
+```swift
+// 1. 스토리보드에 View Controller 올린 후 연결 할 VC 파일 생성
+// 2. 스토리보드의 VC 클릭한 후 Inspector - Custom Class에서 Class에 파일로 만든 VC 이름 쓰기 (연결)
+// 3. Inspector - Identity - StroyBoard ID에 withIdentifier 이름 적어주기
+class ViewController: UIViewController {
+  @IBAction func storyboardWithCodeButtonTapped(_ sender: UIButton) {
+    if let secondVC = storyboard?.instantiateViewController(withIdentifier: "secondVC") as? SecondViewController {
+      secondVC.someString = "전달 데이터"
+      
+      //secondVC.mainLabel.text = "hihi" <- 이렇게 전달은 불가능
+
+      present(secondVC, animated: true, completion: nil)
+    }
+  }
+}
+
+class SecondViewController: UIViewController {
+  var someString: String? //넘겨줄 데이터 받을 변수
+
+  //뒤로가기 버튼
+  @objc func backButtonTapped() {
+    dismiss(animated: true, completion: nil)
+  }
+}
+```
+
+<br>
+3️⃣ 스토리보드에서의 화면 이동 (간접 세그웨이)
+
+```swift
+// 1. 스토리보드에서 View Controller 를 ctrl 누른 상태로 드래그 -> 화면 전환 할 VC에 놓기
+// 2. 그럼 화살표가 연결 되는데, 이를 Segue라고 함
+// 3. 스토리보드의 Segue를 선택한 후 Storyboard Segue - Identifier에 이름 작성
+class ViewController: UIViewController {
+  @IBAction func storyboardWithSegueButtonTapped(_ sender: UIButton) {
+    performSegue(withIdentifier: "toThirdVC", sender: self)
+  }
+
+  //performSegue 실행시 prepare 메서드 호출됨
+  //그래서 prepard 메서드에서 데이터 전달
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "toThirdVC" {
+      let thirdVC = segue.destination as! ThirdViewController
+      
+      //데이터 전달
+      thirdVC.someString = "hi!"
+    }
+  }
+}
+
+class ThirdViewController: UIViewController {
+  var someString: String? //넘겨줄 데이터 받을 변수
+
+  //뒤로가기 버튼
+  @objc func backButtonTapped() {
+    dismiss(animated: true, completion: nil)
+  }
+}
+```
+
+<br>
+4️⃣ 스토리보드에서의 화면 이동 (직접 세그웨이) <br>
+// 버튼에 직접 연결
+
+```swift
+class ViewController: UIViewController {
+  //버튼에 직접 세그를 연결하기 때문에 performSegue 메서드의 호출이 필요 X
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "toFourthVC" {
+      let fourthVC = segue.destination as! FourthViewController
+      
+      //데이터 전달
+      fourthVC.someString = "hello"
+    }
+  }
+
+  var num = 3
+  // 직접 세그웨이에서만 실행됨, 화면 전환 시 조건 설정 가능
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    if num > 5 {
+      return false //화면 전환 X
+    } else {
+      return true
+    }
+  }
+}
+
+class FourthViewController: UIViewController {
+  var someString: String? //넘겨줄 데이터 받을 변수
+
+  //뒤로가기 버튼
+  @objc func backButtonTapped() {
+    dismiss(animated: true, completion: nil)
+  }
+}
+```
+
+<br>
+<br>
+
+❓ **viewDidLoad**
+```
+스토리보드와 코드가 메모리에 올라간 후, 올라간 스토리보드와 코드들이 연결된 후에 호출됨
+```
