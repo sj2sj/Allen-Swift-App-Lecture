@@ -320,7 +320,7 @@ present(alert, animated: true, completion: nil)
 
 <br><br>
 
-## (4) 
+## (4-1) 화면 이동과 데이터 전달 실습
 ### 화면 이동과 데이터 전달 실습
 
 <br>
@@ -458,4 +458,31 @@ class FourthViewController: UIViewController {
 ❓ **viewDidLoad**
 ```
 스토리보드와 코드가 메모리에 올라간 후, 올라간 스토리보드와 코드들이 연결된 후에 호출됨
+```
+
+
+<br><br>
+
+## (4-2) BMI
+### BMI 계산기
+<br>
+
+❓ **Constrain to margins 설정**
+```
+
+```
+
+<br>
+
+<br><br>
+
+## (5) 디자인패턴 
+### 디자인 패턴 (이론)
+<br>
+
+❓ **디자인 패턴**
+```
+공통의 문제에 검증된 정형화된 해결책 (개발 패턴)
+건축 ex) 건축 공법
+앱 아키텍처 ex. MVC, MVVM, MVP...
 ```
