@@ -484,5 +484,14 @@ class FourthViewController: UIViewController {
 ```
 공통의 문제에 검증된 정형화된 해결책 (개발 패턴)
 건축 ex) 건축 공법
-앱 아키텍처 ex. MVC, MVVM, MVP...
+앱 아키텍처
+ ex. MVC, MVVM, MVP...
+```
+
+💡 **MVC 패턴**
+```
+Model - View - Controller 디자인 패턴
+- Model: 비즈니스 로직 (화면과 관련 없는 로직, 데이터 관련)
+- View: UI 관련, 화면 (스토리보드)
+- Controller: 뷰컨트롤러, Model의 정보를 어떻게 View에 표시할 것인지? Model-View의 중재자 역할
 ```
