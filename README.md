@@ -495,3 +495,70 @@ Model - View - Controller 디자인 패턴
 - View: UI 관련, 화면 (스토리보드)
 - Controller: 뷰컨트롤러, Model의 정보를 어떻게 View에 표시할 것인지? Model-View의 중재자 역할
 ```
+
+<br><br>
+
+## (참고) 앱의 내부 매커니즘
+### **1. 뷰컨트롤러 생명주기 (Life Cycle)**
+```
+- 하나의 앱에서 화면 전환 시점을 파악
+
+ex) 인스타그램 디테일 화면에서 좋아요 누른 후에 다시 메인화면으로 왔을 때, 좋아요 업데이트한 화면을 보여줘야함
+```
+❗️ 이론적 접근보다는 많이 사용해보면서 익히기
+- viewDidLoad: 앱 화면에 들어오면 가장 먼저 실행 (뷰가 생성되었을 때 한번만 호출)
+- viewWillApeear: 뷰가 화면에 나타날 때마다 계속 호출 (실제 스크린에 뷰가 나타나기 전에 호출)
+- viewDidAppear: 실제 스크린에 뷰가 나타난 후에 호출
+- viewWillDisappear: 실제 스크린에 뷰가 사라지기 전에 호출 
+- viewDidDisappear: 실제 스크린에 뷰가 사라진 후에 호출
+
+<br>
+
+🌟 **ViewController에서 기본 view를 변경하고 싶을 때 (코드로 UI 짰을 때)**
+
+```swift
+final class ViewController: UIViewController {
+  private let loginView = LoginView()
+
+  override func loadView() {
+    //super.loadView() //super 호출 X
+    view = loginView
+  }
+}
+```
+
+<br>
+
+### **2. 앱의 생명주기**
+```
+- 앱의 비활성화/ (다른 앱 또는 백그라운드) 전환/ 종료 시점 파악
+
+ex) 앱 게임 중 -> 전화 옴 -> 앱은 자동으로 통화화면으로 전환 
+(실행중이던 게임 앱: 비활성화 상태)
+```
+
+1️⃣  AppDelegate
+- Not running: 앱 실행 전
+- Suspended: 대기 상태
+
+2️⃣ SceneDelegate: iOS 13부터 등장 (씬의 전환)
+- Inactive
+- Active
+- Background running
+
+
+<br>
+
+### **3. Drawing 주기** 복습필요🫥
+```
+- 하나의 화면에서, (애니메이션 등) 다시 그리는 시점 파악
+
+ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동할 때
+```
+
+<br>
+<br><br>
+
+## (6) 네비게이션바 + 탭바
+### 네비게이션바 + 탭바
+<br>
