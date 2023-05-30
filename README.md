@@ -560,5 +560,21 @@ ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동�
 <br><br>
 
 ## (6) 네비게이션바 + 탭바
-### 네비게이션바 + 탭바
+### 네비게이션바
+- 몇가지 설정으로 복잡한 기능을 쉽게 사용 가능
+- 단, 제약이 많기 때문에 모든 것이 가능한 것은 아님. (상속) 커스텀으로 만들어야 할 수도 있음
+- 내부적 기능은 만들고 상단바는 숨김처리 할 수도 있음
+- 네비게이션 바에 들어가있는 버튼: Bar Button Item
+- present와는 다름 (네비 바 - show)
+
+<br>
+
+### **Navigation Controller**
+```
+[Editor] - [Embed in] - [Navigation Controller]
+```
+### **Tab Bar Controller**
+```
+네비게이션 컨트롤러 선택 -> [Editor] - [Embed in] - [Tab Bar Controller]
+```
 <br>
