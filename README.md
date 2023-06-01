@@ -560,12 +560,12 @@ ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동�
 <br><br>
 
 ## (6) 네비게이션바 + 탭바
-### 네비게이션바
+### **네비게이션바**
 - 몇가지 설정으로 복잡한 기능을 쉽게 사용 가능
 - 단, 제약이 많기 때문에 모든 것이 가능한 것은 아님. (상속) 커스텀으로 만들어야 할 수도 있음
 - 내부적 기능은 만들고 상단바는 숨김처리 할 수도 있음
 - 네비게이션 바에 들어가있는 버튼: Bar Button Item
-- present와는 다름 (네비 바 - show)
+- present와는 다름 (네비 바 - show) 정확하게는 push(present) -> pop(dismiss)
 
 <br>
 
@@ -573,8 +573,46 @@ ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동�
 ```
 [Editor] - [Embed in] - [Navigation Controller]
 ```
+
+<br><br>
+
+### **탭바**
+- 일반적으로 탭바는 5개가 권장(?), 애플이 기본적으로 제공해주는 것도 5개까지
+- 스토리보드 설정과, 코드로만 UI를 짰을 때는 설정이 다를 수 있으므로 유의 (코드로 UI만들 때 - Scene Delegate ...)
+
+<br>
+
+
 ### **Tab Bar Controller**
 ```
 네비게이션 컨트롤러 선택 -> [Editor] - [Embed in] - [Tab Bar Controller]
 ```
+
 <br>
+
+<br>
+<br><br>
+
+## (7) 테이블 뷰 + 화면 이동
+### **테이블 뷰**
+- 세로로만 스크롤 가능한 뷰 (ex. 카카오톡 채팅 목록/채팅방 대화, 음악 앱 음악 목록, 인스타그램 피드 ... 등등)
+- 테이블 뷰 내부에 셀 존재
+- 델리게이트 패턴 사용 (2가지) dataSource / delegate
+- 셀끼리 그룹화도 가능
+- 유사한 형태로 컬렉션 뷰도 존재함
+
+<br>
+
+🌟 TableView 사용 -> UITableViewDataSource 프로토콜 채택
+```swift
+class ViewController: UIViewController, UITableViewDataSource {
+
+  @IBOutlet weak var tableView: UITableView!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+  }
+
+}
+```
