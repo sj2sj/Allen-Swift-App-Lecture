@@ -7,12 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController {
 
-  var moviesArray: [Movie] = [
-    Movie(movieImage: UIImage(named: "batman.png"), movieName: "베트맨", movieDescription: "베트맨이 출연하는 영화"),
-    Movie(movieImage: UIImage(named: "captain.png"), movieName: "캡틴 아메리카", movieDescription: "캡틴 아메리카의 기원. 캡틴 아메리카는 어떻게 탄생한 것일까?")
-  ]
+  var moviesArray: [Movie] = []
+  
+  var movieDataManager = DataManager()
   
 
   @IBOutlet weak var tableView: UITableView!
@@ -20,18 +19,37 @@ class ViewController: UIViewController, UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
+    tableView.rowHeight = 120
+    
+    movieDataManager.makeMovieData()
+    moviesArray = movieDataManager.getMovieData()
   }
   
-  //몇 개의 컨텐츠를 만들면 되는지?
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    return UITableViewCell()
-  }
   
 
 
 }
 
+
+extension ViewController: UITableViewDataSource {
+  //몇 개의 컨텐츠를 만들면 되는지?
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(#function)
+    return moviesArray.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    print(#function)
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+    
+    let movie = moviesArray[indexPath.row]
+    
+    cell.mainImageView.image = movie.movieImage
+    cell.movieNameLabel.text = movie.movieName //아래와 동일
+    cell.descriptionLabel.text = moviesArray[indexPath.row].movieDescription
+    //cell.selectionStyle = .none
+    
+    return cell
+  }
+}

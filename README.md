@@ -604,15 +604,37 @@ ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동�
 <br>
 
 🌟 TableView 사용 -> UITableViewDataSource 프로토콜 채택
+(관습적으로, 프로토콜 채택은 확장에서 많이 함!!)
 ```swift
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    tableView.dataSource = self
   }
 
+
+}
+
+extension ViewController: UITableViewDataSource {
+  /* UITableViewDataSource을 채택하면 반드시 구현해야하는 메서드 (2개) */
+  //몇 개의 컨텐츠를 만들면 되는지?
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 10
+  }
+  
+  //셀의 구성이 어떻게 되는지?
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //indexPath.section //그룹
+    //indexPath.row //행
+
+    //공식처럼 쓰는 cell 뽑아오는 방법!
+    //코드로 테이블뷰를 만들었으면 등록하는 과정도 필요
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+    
+    return UITableViewCell()
+  }
 }
 ```
