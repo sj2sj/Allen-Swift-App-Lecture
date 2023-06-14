@@ -598,6 +598,13 @@ ex) 애니메이션과 같은 효과, 또는 스크롤 같이 화면이 이동�
 - 세로로만 스크롤 가능한 뷰 (ex. 카카오톡 채팅 목록/채팅방 대화, 음악 앱 음악 목록, 인스타그램 피드 ... 등등)
 - 테이블 뷰 내부에 셀 존재
 - 델리게이트 패턴 사용 (2가지) dataSource / delegate
+```
+1️⃣ dataSource
+실제 테이블 뷰의 표현(구성)을 위한 패턴
+
+2️⃣ Delegate
+테이블 뷰에서 어떤 행동이 일어났을 때 (스크롤, 클릭, 등등)
+```
 - 셀끼리 그룹화도 가능
 - 유사한 형태로 컬렉션 뷰도 존재함
 
@@ -612,20 +619,24 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.dataSource = self
-  }
 
+    //델리게이트 패턴 대리자 설정
+    tableView.dataSource = self
+    tableView.delegate = self
+
+  }
 
 }
 
 extension ViewController: UITableViewDataSource {
   /* UITableViewDataSource을 채택하면 반드시 구현해야하는 메서드 (2개) */
-  //몇 개의 컨텐츠를 만들면 되는지?
+  // 1) 테이블뷰에 몇 개의 데이터를 표시할 것인지 (셀이 몇개인지) 뷰컨트롤러에 물어봄
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 10
   }
   
-  //셀의 구성이 어떻게 되는지?
+  // 2) 셀의 구성 (셀에 표시하고자 하는 데이터 표시) 를 뷰컨트롤러에 물어봄
+  // 테이블 뷰 스크롤 할 때마다 호출됨
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     //indexPath.section //그룹
     //indexPath.row //행
@@ -636,5 +647,29 @@ extension ViewController: UITableViewDataSource {
     
     return UITableViewCell()
   }
+}
+
+extension ViewController: UITableViewDelegate {
+  
+  //테이블 뷰 위의 셀이 클릭 되었을 때
+  //indexPath: 몇 번째 행이 선택 됐는지?
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //segue의 identifier
+    performSegue(withIdentifier: "toDetail", sender: indexPath)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "toDetail" {
+      let detailVC = segue.destination as! DetailViewController
+      
+      let array = movieDataManager.getMovieData()
+      
+      //performSegue sender로 받아온 데이터
+      let indexPath = sender as! IndexPath
+      
+      detailVC.movieData = array[indexPath.row] //우리가 전달하기 원하는 영화 데이터
+    }
+  }
+  
 }
 ```

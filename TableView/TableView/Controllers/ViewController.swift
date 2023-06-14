@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     tableView.dataSource = self
     tableView.rowHeight = 120
     
+    tableView.delegate = self
+    
     movieDataManager.makeMovieData()
     moviesArray = movieDataManager.getMovieData()
   }
@@ -48,8 +50,33 @@ extension ViewController: UITableViewDataSource {
     cell.mainImageView.image = movie.movieImage
     cell.movieNameLabel.text = movie.movieName //아래와 동일
     cell.descriptionLabel.text = moviesArray[indexPath.row].movieDescription
-    //cell.selectionStyle = .none
+    cell.selectionStyle = .none
     
     return cell
   }
+}
+
+
+
+extension ViewController: UITableViewDelegate {
+  
+  //테이블 뷰 위의 셀이 클릭 되었을 때
+  //indexPath: 몇 번째 행이 선택 됐는지?
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    performSegue(withIdentifier: "toDetail", sender: indexPath)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "toDetail" {
+      let detailVC = segue.destination as! DetailViewController
+      
+      let array = movieDataManager.getMovieData()
+      
+      let indexPath = sender as! IndexPath
+      
+      detailVC.movieData = array[indexPath.row] //우리가 전달하기 원하는 영화 데이터
+    }
+  }
+  
 }
