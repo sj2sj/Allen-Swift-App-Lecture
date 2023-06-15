@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  var moviesArray: [Movie] = []
+ // var moviesArray: [Movie] = []
   
   var movieDataManager = DataManager()
   
@@ -23,12 +23,22 @@ class ViewController: UIViewController {
     
     tableView.delegate = self
     
+    self.title = "영화목록"
+    
     movieDataManager.makeMovieData()
-    moviesArray = movieDataManager.getMovieData()
+    //moviesArray = movieDataManager.getMovieData()
   }
   
   
 
+  @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+
+    movieDataManager.updateMovieData()
+
+    
+    tableView.reloadData()
+  }
+  
 
 }
 
@@ -37,7 +47,7 @@ extension ViewController: UITableViewDataSource {
   //몇 개의 컨텐츠를 만들면 되는지?
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     print(#function)
-    return moviesArray.count
+    return movieDataManager.getMovieData().count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,11 +55,11 @@ extension ViewController: UITableViewDataSource {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
     
-    let movie = moviesArray[indexPath.row]
+    let movie = movieDataManager.getMovieData()[indexPath.row]
     
     cell.mainImageView.image = movie.movieImage
     cell.movieNameLabel.text = movie.movieName //아래와 동일
-    cell.descriptionLabel.text = moviesArray[indexPath.row].movieDescription
+    cell.descriptionLabel.text = movie.movieDescription
     cell.selectionStyle = .none
     
     return cell
