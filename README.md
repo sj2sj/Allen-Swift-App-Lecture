@@ -676,3 +676,35 @@ extension ViewController: UITableViewDelegate {
   
 }
 ```
+
+
+
+<br>
+
+<br>
+<br><br>
+
+## (8) 커스텀 델리게이트 패턴 활용
+### 테이블뷰 + 네비게이션바 + 텍스트필드
+### 커스텀 델리게이트 (어떤 경우에 델리게이트 패턴을 직접 만들지?)
+### Notification 사용 (키보드가 올라오면 뷰 이동시키기)
+### 터치가능한 이미지뷰 - 제스쳐 사용!
+### 피커뷰 사용 (델리게이트 패턴): 사진첩에서 사진 가져와서 사용하기
+
+<br>
+
+#### **네비게이션 컨트롤러 - 코드로 UI 구성할 때**
+SceneDelegate 파일
+```swift
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+/* ------------------------------ */
+  guard let windowScene = (scene as? UIWindowScene) else { return }
+  window = UIWindow(windowScene: windowScene)
+  
+  let naviVC = UINavigationController(rootViewController: ViewController())
+  
+  window?.rootViewController = naviVC
+  window?.makeKeyAndVisible()
+/* ------------------------------ */
+}
+```
