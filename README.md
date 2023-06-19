@@ -708,3 +708,20 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
 /* ------------------------------ */
 }
 ```
+
+<br>
+
+🌟 present 메서드는 ViewController에서만 가능하기 때문에 다음 화면으로 넘어가는 이벤트는 항상 ViewController에서!!!! (view에서는 X)
+
+<br>
+
+🌟 viewWillAppear
+```swift
+  //다른화면 갔다가 다시 돌아왔을 때~
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    //테이블 뷰 리로드
+    tableView.reloadData()
+  }
+```

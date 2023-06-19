@@ -8,6 +8,17 @@
 import UIKit
 
 class MyTableViewCell: UITableViewCell {
+  
+  //속성감시자 사용해서 member가 변할 때마다 didSet 실행
+  var member: Member? {
+    didSet {
+      guard var member = member else {return}
+      mainImageView.image = member.memberImage
+      memberNameLabel.text = member.name
+      addressLabel.text = member.address
+    }
+  }
+  
 
   //MARK: UI 구현
   

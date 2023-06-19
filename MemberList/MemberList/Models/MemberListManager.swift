@@ -20,7 +20,7 @@ final class MemberListManager {
       Member(name: "스티브", age: 50, phone: "010-3333-3512", address: "미국"),
       Member(name: "쿡", age: 30, phone: "010-1252-3189", address: "캘리포니아"),
       Member(name: "베조스", age: 50, phone: "010-1567-3612", address: "하와이"),
-      Member(name: "베트맨", age: 41, phone: "010-8952-2612", address: "고담시티"),
+      Member(name: "배트맨", age: 41, phone: "010-8952-2612", address: "고담시티"),
       Member(name: "조커", age: 41, phone: "010-1623-1111", address: "고담시티")
     ]
   }
@@ -44,6 +44,9 @@ final class MemberListManager {
   subscript(index: Int) -> Member {
     get {
       return memberList[index]
+    }
+    set {
+      memberList[index] = newValue
     }
   }
   

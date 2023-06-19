@@ -15,6 +15,13 @@ final class ViewController: UIViewController {
   
   var memberListManager = MemberListManager()
 
+  //네비게이션에 넣기 위한 버튼
+  lazy var plusButton: UIBarButtonItem = {
+    let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
+    return button
+  }()
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -25,6 +32,14 @@ final class ViewController: UIViewController {
 
     setupNaviBar()
     setupTableViewConstraints()
+  }
+  
+  
+  //다른화면 갔다가 다시 돌아왔을 때~
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    tableView.reloadData()
   }
 
   
@@ -41,14 +56,17 @@ final class ViewController: UIViewController {
     navigationController?.navigationBar.scrollEdgeAppearance = appearance
     
     //네비게이션 오른쪽 상단의 버튼 설정 소스
-    //self.navigationItem.rightBarButtonItem = self.plusButton
+    self.navigationItem.rightBarButtonItem = self.plusButton
   }
   
   
   func setupTableView() {
     tableView.dataSource = self
+    tableView.delegate = self
     
     tableView.rowHeight = 60
+    
+    tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "MemberCell")
   }
   
   //데이터 셋업
@@ -70,6 +88,14 @@ final class ViewController: UIViewController {
       tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
     ])
   }
+  
+  
+  //플러스 버튼 (멤버 추가 화면으로~)
+  @objc func plusButtonTapped() {
+    let detailVC = DetailViewController()
+    
+    navigationController?.pushViewController(detailVC, animated: true)
+  }
 
 }
 
@@ -81,7 +107,34 @@ extension ViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    return UITableViewCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as! MyTableViewCell
+    
+    //subscript 구현되어있기 때문에 이렇게 사용 가능
+    /* cell.mainImageView.image = memberListManager[indexPath.row].memberImage
+    cell.memberNameLabel.text = memberListManager[indexPath.row].name
+    cell.addressLabel.text = memberListManager[indexPath.row].address */
+    
+    cell.member = memberListManager[indexPath.row]
+    cell.selectionStyle = .none
+    
+    return cell
   }
 
+}
+
+
+extension ViewController: UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    //다음화면으로 넘어가게
+    let detailVC = DetailViewController()
+    
+    let array = memberListManager.getMemberList()
+    detailVC.member = array[indexPath.row]
+    
+    navigationController?.pushViewController(detailVC, animated: true)
+    
+  }
+  
 }
