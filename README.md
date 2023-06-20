@@ -717,7 +717,7 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
 
 🌟 viewWillAppear
 ```swift
-  //다른화면 갔다가 다시 돌아왔을 때~
+  //다른화면 갔다가 다시 돌아왔을 때 실행
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -725,3 +725,52 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
     tableView.reloadData()
   }
 ```
+
+<br>
+
+🌟 info.plist 설정
+```
+앱의 기본 설정 관련 내용이 저장
+앱 실행 시, 해당 설정이 불러와지는 개념임
+
+Information Property List
+ * Privacy 등의 설정 가능 (카메라, 사진첩 등 권한 설정)
+```
+
+<br>
+
+🌟 **Notification**
+<br>
+애플리케이션 내에서 정보 전달을 위한 알림
+
+```swift
+class DetailView: UIView {
+  //view에서 노티피케이션 등록
+  override init(frame: CGRect) {
+      super.init(frame: frame)
+      backgroundColor = .white
+      setupNotification()
+    }
+
+  func setupNotification() {
+    // 노티피케이션의 등록 ⭐️
+    // (OS차원에서 어떤 노티피케이션이 발생하는지 이미 정해져 있음)
+    // 키보드 올라왔을 때 moveUpAction 메서드 실행
+    NotificationCenter.default.addObserver(self, selector: #selector(moveUpAction), name: UIResponder.keyboardWillShowNotification, object: nil)
+    // 키보드 내려갔을 때 moveDownAction 메서드 실행
+    NotificationCenter.default.addObserver(self, selector: #selector(moveDownAction), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+
+  //소멸자
+  deinit {
+    // 노티피케이션의 등록 해제 (해제안하면 계속 등록될 수 있음) ⭐️
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+}
+```
+
+<br>
+❓ Notification과 델리게이트 패턴의 차이
+- Notifcation (1:N의 개념)
+- 델리게이트 패턴 (1:1의 개념)

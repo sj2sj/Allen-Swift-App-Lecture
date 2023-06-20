@@ -36,11 +36,12 @@ final class ViewController: UIViewController {
   
   
   //다른화면 갔다가 다시 돌아왔을 때~
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    tableView.reloadData()
-  }
+  //커스텀델리게이트 채택해서 테이블뷰를 리로드하고 있기 때문에 필요없음
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(animated)
+//
+//    tableView.reloadData()
+//  }
 
   
   //네비게이션 바 설정
@@ -129,6 +130,7 @@ extension ViewController: UITableViewDelegate {
     
     //다음화면으로 넘어가게
     let detailVC = DetailViewController()
+    detailVC.delegate = self //ViewController를 대리자로 설정
     
     let array = memberListManager.getMemberList()
     detailVC.member = array[indexPath.row]
@@ -136,5 +138,21 @@ extension ViewController: UITableViewDelegate {
     navigationController?.pushViewController(detailVC, animated: true)
     
   }
+  
+}
+
+
+// 커스텀 델리게이트 채택
+extension ViewController: MemberDelegate {
+  func addNewMember(_ member: Member) {
+    memberListManager.makeNewMember(member)
+    tableView.reloadData()
+  }
+  
+  func update(index: Int, _ member: Member) {
+    memberListManager.updateMemberInfo(index: index, member)
+    tableView.reloadData()
+  }
+  
   
 }

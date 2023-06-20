@@ -270,7 +270,9 @@ class DetailView: UIView {
   func setupNotification() {
     // 노티피케이션의 등록 ⭐️
     // (OS차원에서 어떤 노티피케이션이 발생하는지 이미 정해져 있음)
+    // 키보드 올라왔을 때
     NotificationCenter.default.addObserver(self, selector: #selector(moveUpAction), name: UIResponder.keyboardWillShowNotification, object: nil)
+    // 키보드 내려갔을 때
     NotificationCenter.default.addObserver(self, selector: #selector(moveDownAction), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
   
@@ -331,7 +333,7 @@ class DetailView: UIView {
     UIView.animate(withDuration: 0.2) {
         self.layoutIfNeeded()
     }
-}
+  }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.endEditing(true)

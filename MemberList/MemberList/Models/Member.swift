@@ -7,6 +7,16 @@
 
 import UIKit
 
+//커스텀 델리게이트 패턴
+//실제로 일이 일어나는 곳은 DetailViewController이지만 행동은 ViewController가 해줘야함 (대리자)
+protocol MemberDelegate: AnyObject { //Class에서만 채택 가능하게 만들기 위해 AnyObject 상속
+  //새로운 멤버 추가
+  func addNewMember(_ member: Member)
+  //멤버 업데이트
+  func update(index: Int, _ member: Member)
+}
+
+
 //데이터 모델
 struct Member {
   
