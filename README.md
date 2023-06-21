@@ -771,6 +771,107 @@ class DetailView: UIView {
 ```
 
 <br>
+
 ❓ Notification과 델리게이트 패턴의 차이
-- Notifcation (1:N의 개념)
-- 델리게이트 패턴 (1:1의 개념)
+- Notifcation (1:N의 개념) 단방향 (리턴 개념 X)
+- 델리게이트 패턴 (1:1의 개념) 쌍방향
+
+<br>
+
+<br>
+<br><br>
+
+## (9) 네트워킹
+### <클라이언트(앱, 웹) --- TCP/IP --- 서버>
+
+### **TCP/IP : 인터넷에 관련된 다양한 프로토콜의 집합 (HTTP, IP, TCP, UDP, ...)**
+
+<br>
+
+### **⭐️ HTTP**(HyperText Transfer Protocol): 인터넷의 모든 것은 HTTP로 구성
+- HTTP 0.9, 1.0 ...
+- HTTP 1.1: 1997.1 ~ 2014 / 현재도 여전히 사용하고 있는 버전
+
+<br>
+
+### **🌟 HTTP 메세지 형태**
+1️⃣ HTTP 요청 메시지 (Request)
+```
+①시작라인 (메소드 + 요청대상(경로) + HTTP 버전)
+POST /form/entry HTTP /1.1 
+②header (모든 부가정보)
+Host: www.~~~~.com
+Connection: Keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 10
+③공백라인
+
+④Message Body (실제 전송 데이터 -- JSON, HTML문서, 이미지, 영상 등)
+name=gidong&age=20
+```
+
+2️⃣ HTTP 응답 메시지 (Response)
+```
+①시작라인 (HTTP 버전 + 상태코드 + 상태코드에 대한 문구)
+HTTP /1.1 200 OK
+②header (모든 부가정보)
+Date: Tue, 10 Jul 2020 06:40:14 GMT
+Content-Length: 352
+Content-Type: text/html
+③공백라인
+
+④Message Body (실제 전송 데이터 -- JSON, HTML문서, 이미지, 영상 등)
+<html>
+......
+```
+
+<br>
+
+### **🌟 HTTP 프로토콜 / 요청 메서드 종류**
+ CRUD (Create - Read - Update - Delete) 
+
+메서드|설명|예시
+--|:--|:--
+GET | 리소스 취득 (조회) | 게시판 글 읽어오기
+POST | 엔티티 (등록) | 게시판 글 쓰기, 댓글 달기, 새로운 주문 생성
+PUT | 파일 전송 (데이터 대체, 없으면 생성) | 게시글 수정 (데이터 전부 대체)
+DELETE | 파일 삭제 | 게시물 삭제
+PATCH | 리소스 부분 변경 | 게시글에 좋아요
+
+<br>
+
+### **🌟 HTTP 프로토콜 / 응답 상태 코드**
+상태 코드|클래스|설명
+--|:--|:--
+1xx|informational|리퀘스트를 받아들여 처리중 (거의 사용 X)
+2xx|Success|리퀘스트 정상 처리함
+3xx|Redirection|리퀘스트 완료를 위해 추가 동작 필요
+4xx|Client Error|잘못된 요청
+5xx|Server Error|서버의 리퀘스트 처리 실패 (서버 에러)
+
+
+<br> <br>
+
+### **⭐️ URL query**
+https://www.~~~.com:443/search?q=swift&hl=ko
+- 443: port
+- ?q=swift&hl=ko: 쿼리 파라미터
+  - key=value 형태
+  - ?로 시작하고 &로 파라미터 추가
+  
+<br>
+
+**쿼리 파라미터를 통한 데이터 전송**
+- GET 메서드
+- (ex) 검색어 / 정렬 기준 등
+
+**메시지 바디를 통한 데이터 전송**
+- POST / PUT / PATCH 메서드
+- (ex) 회원가입 / 게시글 작성, 수정 등
+
+<br> <br>
+
+### **⭐️ REST API**
+- 클라이언트와 서버 사이의 요청 방식에 대한 약속
+- 과거에는, 요청을 보낼 때 https://(사이트주소)/1 이런 식으로 요청함 ➡️ 어떤 요청을 한건지 개발자가 구분하기 어려움
+- 현재에서는 REST한 형식의 API를 채택하여 https://(사이트주소)/movielist 등의 명사 형태로 요청을 보냄
