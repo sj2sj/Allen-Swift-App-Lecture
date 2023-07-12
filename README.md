@@ -887,19 +887,71 @@ https://www.~~~.com:443/search?q=swift&hl=ko
 
 받아온 데이터를 JSON Parsing하여 우리가 사용할 수 있는 Class/Struct 형태로 만들어서 사용
 
-> 요청 코드는 네트워킹 교재 20-1-1 참고!
+> 👉 요청 코드는 네트워킹 교재 20-1-1 참고!
 
+<br>
+
+### **🌟 데이터 변환 프로토콜**
+Codable <br>
+Decodable: 데이터 -> 클래스, 구조체 <br>
+Encodable: 클래스, 구조체 -> 데이터
 
 <br>
 <br><br>
 
 ## (참고) 비동기 프로그래밍에 대한 이해
-### 
+
+###  **1️⃣ 비동기(Async) VS 동기(Sync)**
+#### **비동기**
+task를 queue에 보냄 --> 즉시 return
+(작업이 끝나는 것을 기다리지 않고 바로 Main Thread로 돌아감)
+
+<br>
+
+#### **동기**
+task가 끝날 때까지 기다림
+
+<br>
+👉 swift에서는 동기: Blocking, 비동기: Non-blocking으로만 동작
+
+<br> 
+
+###  **2️⃣ 직렬(Serial) VS 동시(Concurrent)**
+#### **직렬**
+- 분산처리 시킨 작업을 한 개의 Thread에서 처리
+- 순서가 중요한 작업을 처리
+
+<br>
+
+#### **동시**
+- 다른 여러 개의 쓰레드에서 처리
+- 독립적이지만 유사한 여러개의 작업들을 처리
+
+<br>
+
+```swift
+DispatchQueue.global().async {
+  //비동기 처리 할 코드들
+  //단, 내부적으로는 동기적으로 작동!!!!
+}
 
 
+/*-----------밑의 코드와----------*/
+DispatchQueue.global().async {
+  //test1() 실행 후 test2() 실행
+  test1()
+  test2()
+}
 
-
-
+//밑의 코드는 다름!!!!!
+DispatchQueue.global().async {
+  test1()
+}
+DispatchQueue.global().async {
+  test2()
+}
+/*------------------------------*/
+```
 
 <br>
 <br><br>
