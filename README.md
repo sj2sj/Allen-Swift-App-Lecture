@@ -981,3 +981,31 @@ DispatchQueue.global().async {
 - 스토리보드와 분리해서 뷰의 화면 구성 가능
 ### 간단한 Name Space 사용법 
 - identifier 등 문자열 등을 실수하지 않기 위한 패턴
+
+
+<br>
+
+
+
+<br>
+
+#### **✓ Nib 파일 생성 (UITableViewCell)**
+> Cell을 직접적으로 스토리보드에 올리지 않고 따로 떼서 만들고 싶을 때 사용
+
+1. [New File] - [Cocoa Touch Class]
+2. SubClass of: UITableViewCell
+3. ☑ Also create XIB file *현재는 Nib 파일을 사용  
+  -> swift파일과 스토리보드처럼 생긴 녀석이 같이 생성됨
+
+
+<br>
+
+#### **✓ Name Space**
+> 공통으로 사용되는 url 등을 따로 파일로 빼서 사용
+
+1. Helpers 폴더 생성 - Constants 파일 (폴더/파일명은 자유)
+```swift
+
+```
+
+<br>
