@@ -38,6 +38,8 @@ final class NetworkManager {
     
   }
   
+  /* NetowrkingManager 클래스에서만 사용하기 위해 private */
+  
   // 실제 Request하는 함수 (비동기적 실행 ===> 클로저 방식으로 끝난 시점을 전달 받도록 설계)
   private func performRequest(with urlString: String, completion: @escaping NetworkCompletion) {
     //print(#function)
