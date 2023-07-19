@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3310F2382A67F3C9009B3239 /* MusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310F2372A67F3C9009B3239 /* MusicCollectionViewCell.swift */; };
 		3342252D2A5FF17B008F456B /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3342252C2A5FF17B008F456B /* SearchResultViewController.swift */; };
 		334225302A5FF295008F456B /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3342252F2A5FF295008F456B /* Music.swift */; };
 		334225322A5FF2A6008F456B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334225312A5FF2A6008F456B /* NetworkingManager.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3310F2372A67F3C9009B3239 /* MusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		3342252C2A5FF17B008F456B /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		3342252F2A5FF295008F456B /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		334225312A5FF2A6008F456B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				33A972C82A5FE1D7008BC365 /* Main.storyboard */,
 				33A972DC2A5FE5CE008BC365 /* MyMusicCell.swift */,
 				33A972DD2A5FE5CE008BC365 /* MyMusicCell.xib */,
+				3310F2372A67F3C9009B3239 /* MusicCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				33A972C72A5FE1D7008BC365 /* ViewController.swift in Sources */,
 				33A972C32A5FE1D7008BC365 /* AppDelegate.swift in Sources */,
 				33A972C52A5FE1D7008BC365 /* SceneDelegate.swift in Sources */,
+				3310F2382A67F3C9009B3239 /* MusicCollectionViewCell.swift in Sources */,
 				334225302A5FF295008F456B /* Music.swift in Sources */,
 				334225322A5FF2A6008F456B /* NetworkingManager.swift in Sources */,
 				3342252D2A5FF17B008F456B /* SearchResultViewController.swift in Sources */,
