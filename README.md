@@ -985,6 +985,25 @@ DispatchQueue.global().async {
 
 <br>
 
+#### **✓ Collection View 사용**
+> 컬렉션 뷰에는 레이아웃을 담당하는 객체가 따로 존재
+
+```swift
+//컬렉션뷰와 연결
+@IBOutlet weak var collectionView: UICollectionView!
+
+// 컬렉션뷰의 레이아웃을 담당하는 객체
+let flowLayout = UICollectionViewFlowLayout()
+
+func setupCollectionView() {
+  //...flowLayout으로 레이아웃 설정...//
+  //컬렉션 뷰 속성에 할당 🌟
+  collectionView.collectionViewLayout = flowLayout
+}
+```
+
+<br>
+
 
 
 <br>

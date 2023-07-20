@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="956.48854961832058" y="-27.464788732394368"/>
         </scene>
-        <!--Search Result View Controller-->
+        <!--SearchResultViewController-->
         <scene sceneID="5WL-8r-3cG">
             <objects>
-                <viewController id="DBC-zp-la0" customClass="SearchResultViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchResultViewController" id="DBC-zp-la0" userLabel="SearchResultViewController" customClass="SearchResultViewController" customModule="MyMusicApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2eQ-BM-VCa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jqa-ni-DJL" customClass="MusicCollectionViewCell" customModule="MyMusicApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicCollectionViewCell" id="Jqa-ni-DJL" customClass="MusicCollectionViewCell" customModule="MyMusicApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LpB-pc-fHx">
@@ -77,6 +77,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="fWD-aT-ONV" secondAttribute="bottom" id="xTb-Fz-XDZ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainImageView" destination="fWD-aT-ONV" id="B9a-F7-DN3"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -90,6 +93,9 @@
                             <constraint firstItem="Av9-AV-kbp" firstAttribute="bottom" secondItem="4d9-3U-7kL" secondAttribute="bottom" id="lPf-2a-eIc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4d9-3U-7kL" id="sxA-El-7zA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zjm-pk-s9J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

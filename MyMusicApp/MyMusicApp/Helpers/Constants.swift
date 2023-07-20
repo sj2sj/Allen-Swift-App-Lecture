@@ -20,13 +20,13 @@ public enum MusicApi {
 //Cell의 문자열 묶음
 public struct Cell {
   static let musicCellIdentifier = "MyMusicCell"
-  static let musicCollectionViewCellIdentifer = "MusicCollectionViewCell"
+  static let musicCollectionViewCellIdentifier = "MusicCollectionViewCell"
   private init() {} //다른 곳에서 Cell 인스턴스 생성을 못하게 하기 위해
 }
 
 //컬렉션뷰 구성을 위한 설정
 public struct CVCell {
-  static let spacingWidth: CGFloat = 1
+  static let spacingWidth: CGFloat = 3
   static let cellColumns: CGFloat = 3
   private init() {}
 }

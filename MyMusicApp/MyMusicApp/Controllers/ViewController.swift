@@ -31,8 +31,8 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view.
     
     setupTableView()
-    setupDatas()
     setupSearchBar()
+    setupDatas()
   }
   
   //서치바 설정
@@ -41,12 +41,12 @@ class ViewController: UIViewController {
     navigationItem.searchController = searchController //서치 컨트롤러에 할당
     
     // 🍏 1) (단순)서치바의 사용
-    searchController.searchBar.delegate = self
+    //searchController.searchBar.delegate = self
     
     
     // 🍎 2) 서치(결과)컨트롤러의 사용 (복잡한 구현 가능)
     //     ==> 글자마다 검색 기능 + 새로운 화면을 보여주는 것도 가능
-    //searchController.searchResultsUpdater = self
+    searchController.searchResultsUpdater = self
     
     // 첫글자 대문자 설정 없애기
     searchController.searchBar.autocapitalizationType = .none
@@ -187,15 +187,15 @@ extension ViewController: UISearchBarDelegate {
 
 
 //MARK: -  🍎 검색하는 동안 (새로운 화면을 보여주는) 복잡한 내용 구현 가능
-/*
- extension ViewController: UISearchResultsUpdating {
+
+extension ViewController: UISearchResultsUpdating {
  // 유저가 글자를 입력하는 순간마다 호출되는 메서드 ===> 일반적으로 다른 화면을 보여줄때 구현
  func updateSearchResults(for searchController: UISearchController) {
- print("서치바에 입력되는 단어", searchController.searchBar.text ?? "")
- // 글자를 치는 순간에 다른 화면을 보여주고 싶다면 (컬렉션뷰를 보여줌)
- let vc = searchController.searchResultsController as! SearchResultViewController
- // 컬렉션뷰에 찾으려는 단어 전달
- vc.searchTerm = searchController.searchBar.text ?? ""
- }
- }
- */
+   print("서치바에 입력되는 단어", searchController.searchBar.text ?? "")
+   // 글자를 치는 순간에 다른 화면을 보여주고 싶다면 (컬렉션뷰를 보여줌)
+   let vc = searchController.searchResultsController as! SearchResultViewController
+   // 컬렉션뷰에 찾으려는 단어 전달
+   vc.searchTerm = searchController.searchBar.text ?? ""
+  }
+}
+ 
