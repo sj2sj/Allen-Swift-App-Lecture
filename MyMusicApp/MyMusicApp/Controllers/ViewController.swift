@@ -100,6 +100,10 @@ extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = musicTableView.dequeueReusableCell(withIdentifier: Cell.musicCellIdentifier, for: indexPath) as! MyMusicCell
     
+    //원래대로라면
+    //cell.mainImageView.image = 이미지url
+    
+    
     cell.imageUrl = musicArrays[indexPath.row].imageUrl
     
     cell.songNameLabel.text = musicArrays[indexPath.row].songName
