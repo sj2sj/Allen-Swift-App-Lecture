@@ -17,6 +17,7 @@
 		33B53CCE2A726DF4007DD5FA /* ToDoData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B53CCC2A726DF4007DD5FA /* ToDoData+CoreDataClass.swift */; };
 		33B53CCF2A726DF4007DD5FA /* ToDoData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B53CCD2A726DF4007DD5FA /* ToDoData+CoreDataProperties.swift */; };
 		33B53CD42A726EAC007DD5FA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B53CD32A726EAC007DD5FA /* CoreDataManager.swift */; };
+		33B53CD62A727740007DD5FA /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B53CD52A727740007DD5FA /* ToDoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		33B53CCC2A726DF4007DD5FA /* ToDoData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		33B53CCD2A726DF4007DD5FA /* ToDoData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		33B53CD32A726EAC007DD5FA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		33B53CD52A727740007DD5FA /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		33B53CD22A726E33007DD5FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				33B53CD52A727740007DD5FA /* ToDoCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				33B53CCF2A726DF4007DD5FA /* ToDoData+CoreDataProperties.swift in Sources */,
 				33B53CD42A726EAC007DD5FA /* CoreDataManager.swift in Sources */,
 				33B53CCE2A726DF4007DD5FA /* ToDoData+CoreDataClass.swift in Sources */,
+				33B53CD62A727740007DD5FA /* ToDoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
