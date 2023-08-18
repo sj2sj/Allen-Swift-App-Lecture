@@ -50,7 +50,7 @@ final class ToDoCell: UITableViewCell {
     guard let colorNum = toDoData?.color else { return }
     let color = MyColor(rawValue: colorNum) ?? .red
     updateButton.backgroundColor = color.buttonColor
-    bgView.backgroundColor = color.backgoundColor
+    bgView.backgroundColor = color.backgroundColor
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

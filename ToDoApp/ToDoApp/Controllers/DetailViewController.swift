@@ -70,11 +70,12 @@ final class DetailViewController: UIViewController {
           
       // 기존데이터가 없을때
       } else {
-          self.title = "새로운 메모 생성하기"
-          
-          mainTextView.text = "텍스트를 여기에 입력하세요."
-          mainTextView.textColor = .lightGray
-          setupColorTheme(color: .red)
+        self.title = "새로운 메모 생성하기"
+        
+        mainTextView.text = "텍스트를 여기에 입력하세요."
+        mainTextView.textColor = .lightGray
+        saveButton.setTitle("SAVE", for: .normal)
+        setupColorTheme(color: .red)
       }
       setupColorButton(num: temporaryNum ?? 1)
   }
@@ -92,6 +93,7 @@ final class DetailViewController: UIViewController {
   
   @IBAction func colorButtonTapped(_ sender: UIButton) {
     // 임시숫자 저장
+    print("sender.tag: \(sender.tag)")
     self.temporaryNum = Int64(sender.tag)
     
     let color = MyColor(rawValue: Int64(sender.tag))
@@ -103,24 +105,25 @@ final class DetailViewController: UIViewController {
   
   // 텍스트뷰/저장(업데이트)버튼 색상 설정
   func setupColorTheme(color: MyColor? = .red) {
-      backgroundView.backgroundColor = color?.backgoundColor
+      backgroundView.backgroundColor = color?.backgroundColor
       saveButton.backgroundColor = color?.buttonColor
   }
   
   // 버튼 색상 새롭게 셋팅
   func clearButtonColors() {
-      redButton.backgroundColor = MyColor.red.backgoundColor
+      redButton.backgroundColor = MyColor.red.backgroundColor
       redButton.setTitleColor(MyColor.red.buttonColor, for: .normal)
-      greenButton.backgroundColor = MyColor.green.backgoundColor
+      greenButton.backgroundColor = MyColor.green.backgroundColor
       greenButton.setTitleColor(MyColor.green.buttonColor, for: .normal)
-      blueButton.backgroundColor = MyColor.blue.backgoundColor
+      blueButton.backgroundColor = MyColor.blue.backgroundColor
       blueButton.setTitleColor(MyColor.blue.buttonColor, for: .normal)
-      purpleButton.backgroundColor = MyColor.purple.backgoundColor
+      purpleButton.backgroundColor = MyColor.purple.backgroundColor
       purpleButton.setTitleColor(MyColor.purple.buttonColor, for: .normal)
   }
   
   // 눌려진 버튼 색상 설정
   func setupColorButton(num: Int64) {
+    print(#function, num)
       switch num {
       case 1:
           redButton.backgroundColor = MyColor.red.buttonColor

@@ -13,7 +13,7 @@ enum MyColor: Int64 {
   case blue   = 3
   case purple = 4
   
-  var backgoundColor: UIColor {
+  var backgroundColor: UIColor {
     switch self {
     case .red:
         //UIColor(hexString: "#EFD9D4")
